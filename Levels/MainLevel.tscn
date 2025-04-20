@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://v2ipj485xq05"]
+
+[ext_resource type="PackedScene" uid="uid://bnfs44inbof8e" path="res://Helicopters/HeliCopter.tscn" id="1_ovnwc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ovnwc"]
+
+[sub_resource type="Sky" id="Sky_dncm7"]
+sky_material = SubResource("ProceduralSkyMaterial_ovnwc")
+
+[sub_resource type="Environment" id="Environment_j5hpt"]
+background_mode = 2
+sky = SubResource("Sky_dncm7")
+
+[node name="MainLevel" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.539241, 0.384017, -0.7495, 0, 0.889982, 0.455995, 0.842151, -0.245892, 0.479915, -10.2818, 14.8339, 26.2639)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="HeliCopter" parent="." instance=ExtResource("1_ovnwc")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j5hpt")

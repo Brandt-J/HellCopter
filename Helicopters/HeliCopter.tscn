@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnfs44inbof8e"]
+
+[ext_resource type="Script" uid="uid://ccor6du1mjb2b" path="res://Helicopters/HeliCopter.gd" id="1_e0v7c"]
+[ext_resource type="PackedScene" uid="uid://dvp3b3g8yls67" path="res://Utils/FollowCam.tscn" id="2_lftp0"]
+[ext_resource type="Material" uid="uid://chkgkqqeni8x0" path="res://Materials/Mat_Helicopter.material" id="2_ubqqq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uwas2"]
+radius = 1.5
+height = 5.0
+radial_segments = 16
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uwas2"]
+bottom_radius = 0.2
+height = 4.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_uwas2"]
+outer_radius = 0.7
+
+[sub_resource type="TorusMesh" id="TorusMesh_e0v7c"]
+inner_radius = 2.5
+outer_radius = 2.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0v7c"]
+radius = 1.5
+height = 5.0
+
+[node name="HeliCopter" type="RigidBody3D"]
+mass = 1000.0
+linear_damp = 2.0
+script = ExtResource("1_e0v7c")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 0, 2.03046, 0)
+mesh = SubResource("CapsuleMesh_uwas2")
+surface_material_override/0 = ExtResource("2_ubqqq")
+
+[node name="Tail" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.572424, -3.49494, 0)
+material_override = ExtResource("2_ubqqq")
+mesh = SubResource("CylinderMesh_uwas2")
+
+[node name="RearRotor" type="MeshInstance3D" parent="Body/Tail"]
+transform = Transform3D(1, 0, 0, 0, -0.0351611, -0.999382, 0, 0.999382, -0.0351611, 0.016836, -1.78247, 0.438706)
+mesh = SubResource("TorusMesh_uwas2")
+
+[node name="Rotor" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(-4.37114e-08, -1, 0, -0.0351611, 0, -0.999382, 0.999382, -4.35393e-08, -0.0351611, -2.21419, 0.127066, -0.0547794)
+mesh = SubResource("TorusMesh_e0v7c")
+skeleton = NodePath("../Tail")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, 0, -1, -4.37114e-08, 0, 2.03046, 0)
+shape = SubResource("CapsuleShape3D_e0v7c")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="FollowCam" parent="." instance=ExtResource("2_lftp0")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+camera_height = 20.0
