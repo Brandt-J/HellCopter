@@ -1,28 +1,130 @@
-[gd_scene load_steps=5 format=3 uid="uid://v2ipj485xq05"]
+[gd_scene load_steps=19 format=3 uid="uid://v2ipj485xq05"]
 
 [ext_resource type="PackedScene" uid="uid://bnfs44inbof8e" path="res://Helicopters/HeliCopter.tscn" id="1_ovnwc"]
+[ext_resource type="Texture2D" uid="uid://ddprscrpsofah" path="res://demo/assets/textures/ground037_alb_ht.png" id="2_j5hpt"]
+[ext_resource type="PackedScene" uid="uid://dkhxkvfphayum" path="res://Models/Streetlight.tscn" id="2_pm182"]
+[ext_resource type="Texture2D" uid="uid://c1ots7w6i0i1q" path="res://demo/assets/textures/ground037_nrm_rgh.png" id="3_0tv47"]
+[ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://demo/assets/textures/rock023_alb_ht.png" id="4_ok4l4"]
+[ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://demo/assets/textures/rock023_nrm_rgh.png" id="5_pm182"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ovnwc"]
+sky_top_color = Color(0.159061, 0.197421, 0.250767, 1)
+sky_horizon_color = Color(0.161276, 0.166142, 0.173823, 1)
 
 [sub_resource type="Sky" id="Sky_dncm7"]
 sky_material = SubResource("ProceduralSkyMaterial_ovnwc")
 
 [sub_resource type="Environment" id="Environment_j5hpt"]
 background_mode = 2
+background_energy_multiplier = 0.3
 sky = SubResource("Sky_dncm7")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
+[sub_resource type="Gradient" id="Gradient_ovnwc"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dncm7"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j5hpt"]
+seamless = true
+color_ramp = SubResource("Gradient_ovnwc")
+noise = SubResource("FastNoiseLite_dncm7")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_0tv47"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.87,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"height_blending": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise3_scale": 0.225,
+&"noise_texture": SubResource("NoiseTexture2D_j5hpt"),
+&"projection_angular_division": 2.0,
+&"projection_threshold": 0.8,
+&"world_space_normal_blend": true
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok4l4"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_pm182"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_ok4l4")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_ok4l4"]
+name = "Ground"
+albedo_texture = ExtResource("2_j5hpt")
+normal_texture = ExtResource("3_0tv47")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_vo7st"]
+name = "Rock"
+id = 1
+albedo_texture = ExtResource("4_ok4l4")
+normal_texture = ExtResource("5_pm182")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_vo7st"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_pm182")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_ok4l4"), SubResource("Terrain3DTextureAsset_vo7st")])
 
 [node name="MainLevel" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(100, 1, 100)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.539241, 0.384017, -0.7495, 0, 0.889982, 0.455995, 0.842151, -0.245892, 0.479915, -10.2818, 14.8339, 26.2639)
+light_color = Color(0.556863, 1, 1, 1)
 light_energy = 0.5
 shadow_enabled = true
 
 [node name="HeliCopter" parent="." instance=ExtResource("1_ovnwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.79864, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j5hpt")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Terrain"
+material = SubResource("Terrain3DMaterial_0tv47")
+assets = SubResource("Terrain3DAssets_vo7st")
+mesh_size = 8
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Streetlight" parent="." instance=ExtResource("2_pm182")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79202, 0, 22.016)
+
+[node name="Streetlight2" parent="." instance=ExtResource("2_pm182")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7254, 0, -1.76975)
+
+[node name="Streetlight3" parent="." instance=ExtResource("2_pm182")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7254, 15.3845, -72.7697)
