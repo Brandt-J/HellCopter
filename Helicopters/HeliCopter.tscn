@@ -26,7 +26,10 @@ height = 5.0
 
 [node name="HeliCopter" type="RigidBody3D"]
 mass = 1000.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -10, 0)
 linear_damp = 2.0
+angular_damp = 2.0
 script = ExtResource("1_e0v7c")
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -59,3 +62,9 @@ offset_bottom = 23.0
 [node name="FollowCam" parent="." instance=ExtResource("2_lftp0")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 camera_height = 20.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.826521, 0.562906, 0, -0.562906, 0.826521, 0, 0.33786, -2.07948)
+light_energy = 10.0
+spot_range = 40.0
+spot_angle = 60.0
