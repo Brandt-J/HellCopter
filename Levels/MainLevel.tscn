@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://v2ipj485xq05"]
+[gd_scene load_steps=20 format=3 uid="uid://v2ipj485xq05"]
 
 [ext_resource type="PackedScene" uid="uid://bnfs44inbof8e" path="res://Helicopters/HeliCopter.tscn" id="1_ovnwc"]
 [ext_resource type="Texture2D" uid="uid://ddprscrpsofah" path="res://demo/assets/textures/ground037_alb_ht.png" id="2_j5hpt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c1ots7w6i0i1q" path="res://demo/assets/textures/ground037_nrm_rgh.png" id="3_0tv47"]
 [ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://demo/assets/textures/rock023_alb_ht.png" id="4_ok4l4"]
 [ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://demo/assets/textures/rock023_nrm_rgh.png" id="5_pm182"]
+[ext_resource type="PackedScene" uid="uid://ccvbaf6loof7y" path="res://EnemyVehicles/Vehicle.tscn" id="7_vo7st"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ovnwc"]
 sky_top_color = Color(0.159061, 0.197421, 0.250767, 1)
@@ -18,7 +19,8 @@ sky_material = SubResource("ProceduralSkyMaterial_ovnwc")
 background_mode = 2
 background_energy_multiplier = 0.3
 sky = SubResource("Sky_dncm7")
-volumetric_fog_enabled = true
+ambient_light_sky_contribution = 0.3
+ambient_light_energy = 0.5
 volumetric_fog_density = 0.01
 
 [sub_resource type="Gradient" id="Gradient_ovnwc"]
@@ -103,11 +105,11 @@ texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.539241, 0.384017, -0.7495, 0, 0.889982, 0.455995, 0.842151, -0.245892, 0.479915, -10.2818, 14.8339, 26.2639)
 light_color = Color(0.556863, 1, 1, 1)
-light_energy = 0.5
+light_energy = 0.1
 shadow_enabled = true
 
 [node name="HeliCopter" parent="." instance=ExtResource("1_ovnwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.79864, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0834, 21.6099, 49.9172)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j5hpt")
@@ -116,6 +118,7 @@ environment = SubResource("Environment_j5hpt")
 data_directory = "res://Terrain"
 material = SubResource("Terrain3DMaterial_0tv47")
 assets = SubResource("Terrain3DAssets_vo7st")
+collision_mode = 3
 mesh_size = 8
 top_level = true
 metadata/_edit_lock_ = true
@@ -128,3 +131,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7254, 0, -1.76975)
 
 [node name="Streetlight3" parent="." instance=ExtResource("2_pm182")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7254, 15.3845, -72.7697)
+
+[node name="Vehicle" parent="." instance=ExtResource("7_vo7st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5257, 0.710899, 22.7569)
+
+[node name="Vehicle2" parent="." instance=ExtResource("7_vo7st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1052, 0.710899, 21.7131)
+
+[node name="Vehicle3" parent="." instance=ExtResource("7_vo7st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.64491, 0.710899, 34.4021)
+
+[node name="Vehicle4" parent="." instance=ExtResource("7_vo7st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2426, 9.25365, 0.883385)
+
+[node name="Vehicle5" parent="." instance=ExtResource("7_vo7st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.6162, 9.25365, -21.279)

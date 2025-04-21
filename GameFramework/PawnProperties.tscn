@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfqey6hopqpbo"]
+
+[ext_resource type="Script" uid="uid://drvliximgs6w" path="res://GameFramework/PawnProperties.gd" id="1_slv83"]
+
+[node name="PawnProperties" type="Node3D"]
+script = ExtResource("1_slv83")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+billboard = 1
+text = "120 HP"
+font_size = 320
+outline_size = 40

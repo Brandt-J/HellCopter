@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccvbaf6loof7y"]
+
+[ext_resource type="Script" uid="uid://cyvtmqkao27mo" path="res://EnemyVehicles/Vehicle.gd" id="1_qvm6k"]
+[ext_resource type="PackedScene" uid="uid://dfqey6hopqpbo" path="res://GameFramework/PawnProperties.tscn" id="2_6t6t0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlrnv"]
+size = Vector3(2, 2.3866, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rlrnv"]
+size = Vector3(2.5, 1, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qvm6k"]
+size = Vector3(1.7, 1.2, 3)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rlrnv"]
+height = 0.3
+radial_segments = 16
+
+[node name="Vehicle" type="VehicleBody3D"]
+mass = 1500.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -5, 0)
+script = ExtResource("1_qvm6k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97243, 0)
+shape = SubResource("BoxShape3D_rlrnv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999956, -0.00940719, 0, 0.00940719, 0.999956, 0, 0, 0, 1, 0, 1.27218, 0)
+mesh = SubResource("BoxMesh_rlrnv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.999956, 0.00940719, 0, -0.00940719, 0.999956, 0, 0, 0, 1, 0.00941976, 1.00129, 0.53651)
+mesh = SubResource("BoxMesh_qvm6k")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance3D"]
+transform = Transform3D(0.999934, 0.00940719, -0.00663191, -0.00940698, 0.999956, 6.23903e-05, 0.0066322, 0, 0.999978, 0.835462, 0.116983, -3.37892)
+light_energy = 5.0
+spot_range = 15.0
+spot_angle = 60.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="MeshInstance3D"]
+transform = Transform3D(0.999934, 0.00940719, -0.00663191, -0.00940698, 0.999956, 6.23903e-05, 0.0066322, 0, 0.999978, -0.827954, 0.151612, -3.38737)
+light_energy = 5.0
+spot_range = 15.0
+spot_angle = 60.0
+
+[node name="Wheel_FR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.41129, 0.531341, -1.79614)
+use_as_traction = true
+use_as_steering = true
+suspension_max_force = 9000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_FR"]
+transform = Transform3D(-4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rlrnv")
+
+[node name="Wheel_FL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.47293, 0.531341, -1.79614)
+use_as_traction = true
+use_as_steering = true
+suspension_max_force = 9000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_FL"]
+transform = Transform3D(-4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rlrnv")
+
+[node name="Wheel_RR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.41129, 0.531341, 1.91774)
+use_as_traction = true
+suspension_max_force = 9000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_RR"]
+transform = Transform3D(-4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rlrnv")
+
+[node name="Wheel_RL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.47293, 0.531341, 1.91774)
+use_as_traction = true
+suspension_max_force = 9000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_RL"]
+transform = Transform3D(-4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rlrnv")
+
+[node name="PawnProperties" parent="." instance=ExtResource("2_6t6t0")]
