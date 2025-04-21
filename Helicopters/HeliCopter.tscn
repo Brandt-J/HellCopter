@@ -64,7 +64,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 camera_height = 20.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.826521, 0.562906, 0, -0.562906, 0.826521, 0, 0.33786, -2.07948)
+transform = Transform3D(1, 0, 0, 0, 0.552257, 0.833674, 0, -0.833674, 0.552257, 0, 0.33786, -2.07948)
 light_energy = 10.0
 spot_range = 40.0
-spot_angle = 60.0
+spot_angle = 75.0

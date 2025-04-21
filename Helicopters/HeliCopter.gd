@@ -2,8 +2,8 @@ extends RigidBody3D
 class_name HeliCopter
 
 var hover_power: float = 100.0
-var move_power: float = 3000.0
-var rotation_power: float = 6000.0
+var move_power: float = 5000.0
+var rotation_power: float = 13000.0
 
 var target_height: float = 5.0  # meters
 var height_increment: float = 10.0  # meters
@@ -17,7 +17,7 @@ func _ready() -> void:
 	_follow_cam.set_node_to_follow(self)
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("Up"):
 		target_height += height_increment
 	elif Input.is_action_just_pressed("Down"):
