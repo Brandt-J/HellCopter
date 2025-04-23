@@ -14,6 +14,7 @@ class_name Weapon
 @onready var _weapon_mesh: MeshInstance3D = $WeaponMesh
 @onready var _autoaim_update_timer: Timer  = $AutoaimUpdateTimer
 @onready var _fire_timer: Timer = $FireTimer
+@onready var _fire_stream_player = $AudioStreamPlayer3D
 
 var _closest_target: Node3D
 var _is_firing: bool = false
@@ -48,7 +49,8 @@ func _handle_firing() -> void:
 	
 func _fire_projectile() -> void:
 	ProjectilePool.add_projectile_to(_weapon_mesh, projectile_damage, projectile_speed)
-	
+	_fire_stream_player.play()
+
 
 func _on_autoaim_update_timer_timeout():
 	var targets_in_range: Array[Node3D] = _area.get_overlapping_bodies()

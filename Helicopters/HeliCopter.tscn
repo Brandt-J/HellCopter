@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnfs44inbof8e"]
+[gd_scene load_steps=11 format=3 uid="uid://bnfs44inbof8e"]
 
 [ext_resource type="Script" uid="uid://ccor6du1mjb2b" path="res://Helicopters/HeliCopter.gd" id="1_e0v7c"]
 [ext_resource type="PackedScene" uid="uid://dvp3b3g8yls67" path="res://Utils/FollowCam.tscn" id="2_lftp0"]
 [ext_resource type="Material" uid="uid://chkgkqqeni8x0" path="res://Materials/Mat_Helicopter.material" id="2_ubqqq"]
 [ext_resource type="PackedScene" uid="uid://ct84kpaccloh2" path="res://Weapons/MG.tscn" id="4_e8ija"]
+[ext_resource type="AudioStream" uid="uid://nctvc854n5qv" path="res://Audio/Helicopters/Heli_Loop1.ogg" id="5_2g5if"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uwas2"]
 radius = 1.5
@@ -73,3 +74,7 @@ spot_angle = 75.0
 
 [node name="Weapon" parent="." instance=ExtResource("4_e8ija")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57157, 1.37125, -1.65244)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2g5if")
+autoplay = true

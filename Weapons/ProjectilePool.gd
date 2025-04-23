@@ -16,6 +16,7 @@ func add_projectile_to(parent: Node3D, damage: float, speed: float) -> void:
 	
 	parent.add_child(projectile)
 	projectile.set_owner(parent)
+	projectile.global_transform = parent.global_transform
 	projectile.process_mode = Node.PROCESS_MODE_INHERIT
 	
 
