@@ -2,7 +2,7 @@ extends VehicleBody3D
 class_name Vehicle
 
 
-var engine_power: float = 2_000.0
+var engine_power: float = 4_000.0
 
 var _ontop: bool = true
 var _startpos: Vector3
@@ -50,3 +50,6 @@ func _get_new_target() -> void:
 		global_position.y,
 		randf_range(_startpos.z-_max_distance, _startpos.z+_max_distance))
 	
+
+func _on_pawn_properties_died():
+	queue_free()

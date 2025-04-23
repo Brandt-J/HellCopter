@@ -5,7 +5,7 @@ var hover_power: float = 100.0
 var move_power: float = 5000.0
 var rotation_power: float = 13000.0
 
-var target_height: float = 5.0  # meters
+var target_height: float = 0.1  # meters
 var height_increment: float = 10.0  # meters
 var adjust_height_time: float = 1.5  # seconds
 var turn_angle: float = 30.0  # degrees

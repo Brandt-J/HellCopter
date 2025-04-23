@@ -109,7 +109,7 @@ light_energy = 0.1
 shadow_enabled = true
 
 [node name="HeliCopter" parent="." instance=ExtResource("1_ovnwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0834, 21.6099, 49.9172)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.083, 0, 49.917)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j5hpt")
@@ -125,6 +125,9 @@ metadata/_edit_lock_ = true
 
 [node name="Streetlight" parent="." instance=ExtResource("2_pm182")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79202, 0, 22.016)
+
+[node name="Streetlight4" parent="." instance=ExtResource("2_pm182")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.9861, 8.09183, -36.6492)
 
 [node name="Streetlight2" parent="." instance=ExtResource("2_pm182")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7254, 0, -1.76975)

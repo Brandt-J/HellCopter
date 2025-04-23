@@ -17,6 +17,7 @@ height = 0.3
 radial_segments = 16
 
 [node name="Vehicle" type="VehicleBody3D"]
+collision_layer = 4
 mass = 1500.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -5, 0)
@@ -86,3 +87,5 @@ transform = Transform3D(-4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 8.74228
 mesh = SubResource("CylinderMesh_rlrnv")
 
 [node name="PawnProperties" parent="." instance=ExtResource("2_6t6t0")]
+
+[connection signal="died" from="PawnProperties" to="." method="_on_pawn_properties_died"]
